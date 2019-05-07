@@ -1,0 +1,23 @@
+# GO Terms:
+
+GO Terms Browser: 
+
+http://amigo.geneontology.org/amigo/dd_browse
+
+	+	taxon_subset_closure_label: Mus musculus: 24870 genes
+	+	regulates_closure: GO:0005886 (Plasma Membrane): 5408 genes
+	+	annotation_class_list_label: external side of plasma membrane: 616 genes
+	Further optional filters: (have to download to see overlap)
+		(282)	plasma membrane
+    (212)	innate immune response
+		(193)	B cell receptor signaling pathway
+		(190)	complement activation, classical pathway
+		(152)	cell surface
+		(134)	extracellular space
+		(102)	immune response
+		synapse	(23)
+		cell-cell adhesion	(16)
+		cell-matrix adhesion	(15)
+		axon guidance		(7)
+		GABA-ergic synapse	(6)
+		ETC…..
