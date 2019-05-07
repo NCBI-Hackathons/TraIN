@@ -1,0 +1,18 @@
+# PPI (protein-protein interaction) databases
+
+HuRI: The Human Reference Protein Interactome Mapping Project
+http://interactome.baderlab.org/download
+Paper: https://www.cell.com/abstract/S0092-8674(14)01422-6
+
+STRING
+https://string-db.org/cgi/download.pl?sessionId=VHkRbsdTEDc8
+
+EMBL-EBI IntAct Molecular Interaction Database
+https://www.ebi.ac.uk/intact/downloads;jsessionid=C99678C5AB66E87F5DEC57A819E74DC8
+
+BioGRID (Biological General Repository for Interaction Datasets)
+https://downloads.thebiogrid.org/BioGRID
+
+
+# Non-systematic list of known membrane-bound PPIs: (under devel.)
+
