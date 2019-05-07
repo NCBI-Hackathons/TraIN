@@ -9,7 +9,7 @@ http://amigo.geneontology.org/amigo/dd_browse
 	+	annotation_class_list_label: external side of plasma membrane: 616 genes
 	Further optional filters: (have to download to see overlap)
 		(282)	plasma membrane
-    (212)	innate immune response
+		(212)	innate immune response
 		(193)	B cell receptor signaling pathway
 		(190)	complement activation, classical pathway
 		(152)	cell surface
