@@ -17,3 +17,14 @@ As input, we’ll use a selected subset of publicly available RNAseq datasets of
 4) Score molecule pairs - (for likelihood and “researchability”)
 
 5) Verify Output - high score for known pairs of cell-to-cell communication molecules and briefly explore molecule pairs with high score.
+
+
+# BRAINSTORM TOPICS:
+
+- Binary Y/N for gene expression: For first pipeline only. Discuss cutoff (try avoiding complex normalization if possible) across data sets.
+
+- scRNAseq as input: use expression of cell type clusters vs single cell data. If clusters, then use mean of top quartile/quantile (?) expression value for each gene, to address technical lose of data. If single cell, think about how to address the cell pairs, and how to process that probably heavy data.
+
+- Machine learning: for discovery of new potential pairs of molecules of cell-to cell-communication, instead of being limited by current knowledge to guide the scores. Discuss normalization strategy and challenges to exploit the actual level of expression, instead of binary Y/N expression. 
+
+- Soluble signals: how to deal with soluble signals and their receptors in this pipeline.
