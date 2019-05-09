@@ -28,3 +28,6 @@ As input, we’ll use a selected subset of publicly available RNAseq datasets of
 - Machine learning: for discovery of new potential pairs of molecules of cell-to cell-communication, instead of being limited by current knowledge to guide the scores. Discuss normalization strategy and challenges to exploit the actual level of expression, instead of binary Y/N expression. 
 
 - Soluble signals: how to deal with soluble signals and their receptors (membrane-bound and cytoplasmic) in this pipeline.
+
+
+https://docs.google.com/presentation/d/1SRzeDzRk7655pJQ5Riw72I9Ejibmf5ry_IpN7QvEeHE/edit#slide=id.g574aa541ae_4_0
