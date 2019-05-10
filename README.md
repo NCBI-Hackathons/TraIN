@@ -1,4 +1,4 @@
-# The Molecular Language of the Body: Discovery of cell-to-cell communication molecules from RNAseq data
+# TraIN: Translating knowledge of cell-to-cell communication molecules from Immunology to Neuroscience with RNAseq data
 
 TEAM: Lucia Guerri, Miranda Darby, Jingwen Gu, Amanda Bell, Van Truong, Saba Nafees
 
