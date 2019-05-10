@@ -1,6 +1,6 @@
 # TraIN: Translating knowledge of cell-to-cell communication molecules from Immunology to Neuroscience with RNAseq data
 
-![picture](https://ibb.co/h964zmb)
+![picture](workflow.png)
 
 TEAM: Lucia Guerri, Miranda Darby, Jingwen Gu, Amanda Bell, Van Truong, Saba Nafees
 
