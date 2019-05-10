@@ -1,8 +1,7 @@
 # TraIN: Translating knowledge of cell-to-cell communication molecules from Immunology to Neuroscience with RNAseq data
+home/mobaxterm/Desktop/IMG_3934
 
 TEAM: Lucia Guerri, Miranda Darby, Jingwen Gu, Amanda Bell, Van Truong, Saba Nafees
-
-![alt text](https://files.slack.com/files-pri/TJ79FGDFW-FJLCTR8D6/image.png)
 
 
 Dynamic communication between cells is essential for the proper functioning of the human body. While pairs of molecules for cell-to-cell communication usually have an evolutionarily unique functional origin, they are ‘recycled’ and ‘reused’ by different tissues of the body. The study of cell-to-cell communication molecules has been particularly strong in immunology, thanks to the easy isolation of immune cells and the large variety of cell-to-cell interactions. Neuroscience focused mainly on electrophysiological approaches to study the function of the brain, and only recently, started tackling tissue dissociation for purified cell-type and single-cell genomics and molecular studies. I propose to develop a tool to translate knowledge about cell-to-cell communication molecules from immunology into neuroscience. Specifically, we will develop an R tool that uses RNAseq gene expression matrices from pairs of interacting cells (e.g. T-cell/macrophage, T-cell/B-cell, neuron/microglia) and outputs lists of potential pairs of cell-to-cell communication molecules. 
