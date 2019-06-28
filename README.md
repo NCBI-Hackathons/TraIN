@@ -2,7 +2,8 @@
 
 TEAM: Lucia Guerri, Saba Nafees, Amanda Bell, Jingwen Gu, Van Truong & Miranda Darby 
 
-# THIS PROJECT IS UNDER DEVELOPMENT. UPDATE COMING SOON!
+## THIS PROJECT IS UNDER DEVELOPMENT. UPDATE COMING SOON!
+
 
 ![picture](workflow.png)
 
