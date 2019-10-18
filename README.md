@@ -3,7 +3,7 @@
 HackSeq19 TEAM: Lucia Guerri (lead), David Guo (co-lead), Avi Srivastava, Owen Tsai, Nicole Knoetze, Almas Khan
 NCBI Hackathon TEAM: Lucia Guerri (lead), Saba Nafees, Amanda Bell, Jingwen Gu, Van Truong & Miranda Darby 
 
-## THIS PROJECT IS UNDER DEVELOPMENT. UPDATE COMING SOON!
+## THIS PROJECT IS CURRENTLY UNDER DEVELOPMENT
 
 ![picture](Graphics/Poster.jpg)
 ![picture](Graphics/Workflow.png)
