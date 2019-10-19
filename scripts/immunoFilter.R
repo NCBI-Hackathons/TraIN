@@ -21,6 +21,6 @@ freqs <- table(cell.type.names)
 mean <- data.frame(matrix(mapply('/', aggregate, freqs),  ncol=length(freqs)))
 rownames(mean) <- rownames(aggregate)
 colnames(mean) <- colnames(aggregate)
-mean$colMax <- apply(mean, 2, function(x) max(x) )
+mean$colMax <- apply(t(mean), 2, function(x) max(x) )
 
 write.csv(mean, file="immuno_mean_counts.csv",quote = FALSE)
