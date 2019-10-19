@@ -12,18 +12,22 @@ Biogrid_table <- read.delim(Biogrid)
 Biogrid_table <- Biogrid_table %>%
   filter(Organism.Interactor.A==9606,Organism.Interactor.B==9606)
 
-view(Biogrid_table)
 human_protein_coding_genes <- read.delim(here("human_protein_coding_genes.tsv"))
 human_protein_coding_genes$GeneID <- as_factor(human_protein_coding_genes$GeneID)
 human_prot_gene_A <- dplyr:::select(human_protein_coding_genes,Entrez.Gene.Interactor.A=GeneID,
-                                    Ensembl_gene_identifier_A=Ensembl_gene_identifier)
+                                    ENSEMBL_A=Ensembl_gene_identifier)
 
 human_prot_gene_B <- dplyr:::select(human_protein_coding_genes,Entrez.Gene.Interactor.B=GeneID,
-                                Ensembl_gene_identifier_B=Ensembl_gene_identifier) 
+                                ENSEMBL_B=Ensembl_gene_identifier) 
 
 Biogrid_table <- Biogrid_table %>%
   left_join(.,human_prot_gene_A)
 Biogrid_table <- Biogrid_table %>%
   left_join(.,human_prot_gene_B)
 
-write_csv(Biogrid_table,here("Biogrid_table_pp_interaction.csv"))
+surface_genes <- read.delim(here("human_surface_genes.tsv"))
+Biogrid_table <- Biogrid_table %>%
+  filter( ENSEMBL_A %in% surface_genes$Ensembl_gene_identifier &
+            ENSEMBL_B %in% surface_genes$Ensembl_gene_identifier)
+
+write_csv(Biogrid_table,here("human_surface_pp_interaction.csv"))
