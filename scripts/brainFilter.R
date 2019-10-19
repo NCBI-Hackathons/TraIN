@@ -54,15 +54,13 @@ ppicomb <- rbind(ppicombA,ppicombB); ppicomb
 
 #FILTER DATA FOR GENES LIST
 brainppi <- brainsurf[0,]
-for (i in 1:nrow(brainsurf)) {
-  if ((isTRUE(rownames(brainsurf)[i] %in% ppicombA))&
-      (isTRUE(ppicombB[which(ppicombA %in% rownames(brainsurf)[i])] %in% rownames(brainsurf)))){
-       brainppi <- rbind(brainppi, brainsurf[i,])
+for (i in 1:nrow(ppilist)) {
+  if((ppicombA[i] %in% rownames(brainsurf))&(ppicombB[i] %in% rownames(brainsurf))) {
+    indexa <- which(rownames(brainsurf) %in% ppicombA[i])
+    print(indexa)
+    indexb <- which(rownames(brainsurf) %in% ppicombB[i])
+    print(indexb)
+    brainppi <- rbind(brainppi, brainsurf[indexa,])
+    brainppi <- rbind(brainppi, brainsurf[indexb,])
   }
-  else if((isTRUE(rownames(brainsurf)[i] %in% ppicombB))&
-           (isTRUE(ppicombA[which(ppicombB %in% rownames(brainsurf)[i])] %in% rownames(brainsurf)))){
-       brainppi <- rbind(brainppi, brainsurf[i,])
-    }
-  }
-
-#
+}
