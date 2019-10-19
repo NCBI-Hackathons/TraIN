@@ -1,8 +1,8 @@
 library(tidyverse)
 download.file("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2go.gz", destfile = "gene2go.gz")
 
-gene2go <- read.delim("~/Library/CloudStorage/iCloudDrive/Desktop/all_human_genes/gene2go.gz", header=TRUE)
-human_protein_coding_genes <- read.delim("~/Library/CloudStorage/iCloudDrive/Desktop/all_human_genes/human_protein_coding_genes.tsv")
+gene2go <- read.delim("gene2go.gz", header=TRUE)
+human_protein_coding_genes <- read.delim("human_protein_coding_genes.tsv")
 
 human_surface_genes <- gene2go %>%
   filter(X.tax_id == 9606) %>%
@@ -12,4 +12,4 @@ human_surface_genes <- gene2go %>%
   dplyr::select(GeneID, GO_ID, Evidence, GO_term, PubMed) %>%
   left_join(human_protein_coding_genes, by="GeneID")
 
-write.table(human_surface_genes, file="/Users/yichengtsai/Desktop/all_human_genes/human_surface_genes.tsv", sep='\t', row.names=FALSE, quote=FALSE)
+write.table(human_surface_genes, file="human_surface_genes.tsv", sep='\t', row.names=FALSE, quote=FALSE)
