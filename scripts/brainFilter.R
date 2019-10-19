@@ -31,7 +31,7 @@ for (i in 1:length(brainfile)){
 
 brainmean$max <- apply(brainmean[,], 1, max)
 
-#write.csv(brainmean, file = "../outputs/brain_mean_counts.csv", quote = FALSE)
+write.csv(brainmean, file = "../outputs/brain_mean_counts.csv", quote = FALSE)
 
 ## CONVERT SURFACE MOLECULES FROM UNIPROT TO ENSEMBL
 library(biomaRt)
@@ -46,21 +46,35 @@ geneid <- getBM(attributes=c("uniprot_gn_id", "ensembl_gene_id", "external_gene_
 ## FILTER BRAIN DATA FOR SURFACE MOLECULES
 brainsurf <- brainmean[rownames(brainmean) %in% geneid$ensembl_gene_id,]
 
+write.csv(brainsurf, file = "../outputs/brain_surf_counts.csv", quote = FALSE)
+
 # LOAD PPI PAIRS
 ppilist <- read.csv(file = "../reference/human-PPI-pairs.csv", header = TRUE)
 ppicombA <- matrix(ppilist[, "ENSEMBL_A"])
 ppicombB <- matrix(ppilist[, "ENSEMBL_B"])
 ppicomb <- rbind(ppicombA,ppicombB); ppicomb
 
-#FILTER DATA FOR GENES LIST
-brainppi <- brainsurf[0,]
+#FILTER DATA FOR PPI PAIRS AND GENERATE TWO MATRICES (EACH GENE IN PAIR)
+brainppiA <- brainsurf[0,]
+brainppiB <- brainsurf[0,]
 for (i in 1:nrow(ppilist)) {
   if((ppicombA[i] %in% rownames(brainsurf))&(ppicombB[i] %in% rownames(brainsurf))) {
     indexa <- which(rownames(brainsurf) %in% ppicombA[i])
     print(indexa)
     indexb <- which(rownames(brainsurf) %in% ppicombB[i])
     print(indexb)
-    brainppi <- rbind(brainppi, brainsurf[indexa,])
-    brainppi <- rbind(brainppi, brainsurf[indexb,])
+    brainppiA <- rbind(brainppiA, brainsurf[indexa,])
+    brainppiB <- rbind(brainppiB, brainsurf[indexb,])
   }
 }
+write.csv(brainppiA, file = "../outputs/brain_ppiA_counts.csv", quote = FALSE)
+write.csv(brainppiB, file = "../outputs/brain_ppiB_counts.csv", quote = FALSE)
+
+# CREATE MERGE MATRIX WITH BOTH GENE NAMES AND THE MINIMUM OF THE MAX REGION MEAN COUNTS
+minppi <- data.frame("Amax"=brainppiA$max, "Bmax"=brainppiB$max); minppi
+brainppi <- data.frame("GeneA" = rownames(brainppiA),
+                       "GeneB" = rownames(brainppiB),
+                       "min" = apply(minppi, 1, max))
+
+write.csv(brainppi, file = "../outputs/brain_ppi_mapping.csv", quote = FALSE, row.names = FALSE)
+
