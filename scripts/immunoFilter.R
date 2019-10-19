@@ -9,7 +9,7 @@ for (i in 1:length(immunofile)){
   name <- immunoreg[i]
   file <- immunofile[i]
   genelist <- read.csv(file, header = TRUE, row.names = 1)
-  genelist <- genelist[3:ncol(genelist)]
+  genelist <- genelist[,3:ncol(genelist)]
   #assign(name, genelist)
   
   # create table with mean values of gene expression (in cpm) for each region
@@ -42,23 +42,13 @@ immunomean$max <- apply(immunomean[,], 1, max)
 
 write.csv(immunomean, file = "../outputs/immuno_mean_counts.csv", quote = FALSE)
 
-## CONVERT SURFACE MOLECULES FROM UNIPROT TO ENSEMBL
-library(biomaRt)
-
-surflist <- as.matrix(read.csv(file = "../reference/Hs_cell-surface-671.csv", header = TRUE)[,1])
-uniprotid <- surflist[grep("UniProtKB:",surflist)]
-uniprotid <- (gsub("UniProtKB:", "",uniprotid))
-
-mart.hs <- useMart(biomart = "ENSEMBL_MART_ENSEMBL", dataset = "hsapiens_gene_ensembl")
-geneid <- getBM(attributes=c("uniprot_gn_id", "ensembl_gene_id_version", "ensembl_gene_id", "external_gene_name"), filter="uniprot_gn_id", values = uniprotid, mart=mart.hs)
-
-## FILTER immuno DATA FOR SURFACE MOLECULES
-immunosurf <- immunomean[rownames(immunomean) %in% geneid$ensembl_gene_id,]
-
-write.csv(immunosurf, file = "../outputs/immuno_surf_counts.csv", quote = FALSE)
-
+# ## FILTER immuno DATA FOR SURFACE MOLECULES
+# immunosurf <- immunomean[rownames(immunomean) %in% geneid$ensembl_gene_id,]
+# 
+# write.csv(immunosurf, file = "../outputs/immuno_surf_counts.csv", quote = FALSE)
+immunosurf <- immunomean
 # LOAD PPI PAIRS
-ppilist <- read.csv(file = "../reference/biogrid_table_pp_interaction.csv", header = TRUE)
+ppilist <- as.data.frame(read.csv(file = "../reference/human_surface_pp_interaction.csv", header = TRUE, stringsAsFactors = FALSE))
 ppicombA <- matrix(ppilist[, "ENSEMBL_A"])
 ppicombB <- matrix(ppilist[, "ENSEMBL_B"])
 ppicomb <- rbind(ppicombA,ppicombB); ppicomb
@@ -89,16 +79,22 @@ write.csv(immunoppiB, file = "../outputs/immuno_ppiB_counts.csv", quote = FALSE)
 minppi <- data.frame("Amax"=immunoppiA$max, "Bmax"=immunoppiB$max); minppi
 
 for (i in 1:nrow(immunoppiA)){
-  if (immunoppiA$ensembl_id[i] %in% geneid$ensembl_gene_id) {
-    immunoppiA$genename[i] <- geneid$external_gene_name[which(geneid$ensembl_gene_id %in% immunoppiA$ensembl_id[i])]
+  if (immunoppiA$ensembl_id[i] %in% ppilist$ENSEMBL_A) {
+    immunoppiA$genename[i] <- ppilist$Official.Symbol.Interactor.A[which(ppilist$ENSEMBL_A %in% immunoppiA$ensembl_id[i])]
   }
-  else {
+  else if (immunoppiA$ensembl_id[i] %in% ppilist$ENSEMBL_B){
+    immunoppiA$genename[i] <- ppilist$Official.Symbol.Interactor.B[which(ppilist$ENSEMBL_B %in% immunoppiA$ensembl_id[i])]
+  }
+  else{
     immunoppiA$genename[i] <- NA
   }
-  if (immunoppiB$ensembl_id[i] %in% geneid$ensembl_gene_id) {
-    immunoppiB$genename[i] <- geneid$external_gene_name[which(geneid$ensembl_gene_id %in% immunoppiB$ensembl_id[i])]
+  if (immunoppiB$ensembl_id[i] %in% ppilist$ENSEMBL_A) {
+    immunoppiB$genename[i] <- ppilist$Official.Symbol.Interactor.A[which(ppilist$ENSEMBL_A %in% immunoppiB$ensembl_id[i])]
   }
-  else {
+  else if (immunoppiB$ensembl_id[i] %in% ppilist$ENSEMBL_B){
+    immunoppiB$genename[i] <- ppilist$Official.Symbol.Interactor.B[which(ppilist$ENSEMBL_B %in% immunoppiB$ensembl_id[i])]
+  }
+  else{
     immunoppiB$genename[i] <- NA
   }
 }

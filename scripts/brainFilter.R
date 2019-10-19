@@ -41,23 +41,13 @@ brainmean$max <- apply(brainmean[,], 1, max)
 
 write.csv(brainmean, file = "../outputs/brain_mean_counts.csv", quote = FALSE)
 
-## CONVERT SURFACE MOLECULES FROM UNIPROT TO ENSEMBL
-library(biomaRt)
-
-surflist <- as.matrix(read.csv(file = "../reference/Hs_cell-surface-671.csv", header = TRUE)[,1])
-uniprotid <- surflist[grep("UniProtKB:",surflist)]
-uniprotid <- (gsub("UniProtKB:", "",uniprotid))
-
-mart.hs <- useMart(biomart = "ENSEMBL_MART_ENSEMBL", dataset = "hsapiens_gene_ensembl")
-geneid <- getBM(attributes=c("uniprot_gn_id", "ensembl_gene_id", "external_gene_name"), filter="uniprot_gn_id", values = uniprotid, mart=mart.hs)
-
 # ## FILTER BRAIN DATA FOR SURFACE MOLECULES
 # brainsurf <- brainmean[rownames(brainmean) %in% geneid$ensembl_gene_id,]
 # 
 # write.csv(brainsurf, file = "../outputs/brain_surf_counts.csv", quote = FALSE)
 brainsurf <- brainmean
 # LOAD PPI PAIRS
-ppilist <- read.csv(file = "../reference/human_surface_pp_interaction.csv", header = TRUE)
+ppilist <- as.data.frame(read.csv(file = "../reference/human_surface_pp_interaction.csv", header = TRUE, stringsAsFactors = FALSE))
 ppicombA <- matrix(ppilist[, "ENSEMBL_A"])
 ppicombB <- matrix(ppilist[, "ENSEMBL_B"])
 ppicomb <- rbind(ppicombA,ppicombB); ppicomb
@@ -88,16 +78,22 @@ write.csv(brainppiB, file = "../outputs/brain_ppiB_counts.csv", quote = FALSE)
 minppi <- data.frame("Amax"=brainppiA$max, "Bmax"=brainppiB$max); minppi
 
 for (i in 1:nrow(brainppiA)){
-  if (brainppiA$ensembl_id[i] %in% geneid$ensembl_gene_id) {
-    brainppiA$genename[i] <- geneid$external_gene_name[which(geneid$ensembl_gene_id %in% brainppiA$ensembl_id[i])]
+  if (brainppiA$ensembl_id[i] %in% ppilist$ENSEMBL_A) {
+    brainppiA$genename[i] <- ppilist$Official.Symbol.Interactor.A[which(ppilist$ENSEMBL_A %in% brainppiA$ensembl_id[i])]
   }
-  else {
+  else if (brainppiA$ensembl_id[i] %in% ppilist$ENSEMBL_B){
+    brainppiA$genename[i] <- ppilist$Official.Symbol.Interactor.B[which(ppilist$ENSEMBL_B %in% brainppiA$ensembl_id[i])]
+  }
+  else{
     brainppiA$genename[i] <- NA
   }
-  if (brainppiB$ensembl_id[i] %in% geneid$ensembl_gene_id) {
-    brainppiB$genename[i] <- geneid$external_gene_name[which(geneid$ensembl_gene_id %in% brainppiB$ensembl_id[i])]
+  if (brainppiB$ensembl_id[i] %in% ppilist$ENSEMBL_A) {
+    brainppiB$genename[i] <- ppilist$Official.Symbol.Interactor.A[which(ppilist$ENSEMBL_A %in% brainppiB$ensembl_id[i])]
   }
-  else {
+  else if (brainppiB$ensembl_id[i] %in% ppilist$ENSEMBL_B){
+    brainppiB$genename[i] <- ppilist$Official.Symbol.Interactor.B[which(ppilist$ENSEMBL_B %in% brainppiB$ensembl_id[i])]
+  }
+  else{
     brainppiB$genename[i] <- NA
   }
 }
