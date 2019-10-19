@@ -1,8 +1,10 @@
 # A TraIN for cell-to-cell communication molecules: Translating from Immunology to Neuroscience
 
-HackSeq19 (Oct 2019) TEAM: Lucia Guerri (lead), David Guo (co-lead), Avi Srivastava, Owen Tsai, Nicole Knoetze, Almas Khan
+HackSeq19 (Oct 2019) TEAM: 
+Lucia Guerri (lead), David Guo (co-lead), Avi Srivastava, Owen Tsai, Nicole Knoetze, Almas Khan
 
-NCBI Hackathon (May 2019) TEAM: Lucia Guerri (lead), Saba Nafees, Amanda Bell, Jingwen Gu, Van Truong & Miranda Darby 
+NCBI Hackathon (May 2019) TEAM: 
+Lucia Guerri (lead), Saba Nafees, Amanda Bell, Jingwen Gu, Van Truong & Miranda Darby 
 
 ![picture](Graphics/Poster.jpg)
 ![picture](Graphics/Workflow.png)
