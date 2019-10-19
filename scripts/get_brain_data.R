@@ -56,7 +56,7 @@ write.csv(cerebellum_metadata, file="cerebellum_sampleData.csv",quote=FALSE)
 BA9_metadata <- metadata %>% filter(smtsd == "Brain - Frontal Cortex (BA9)")
 BA9_counts <- tpm[,colnames(tpm) %in% BA9_metadata$accession]
 write.csv(BA9_counts, file="BA9_counts.csv",quote=FALSE)
-write.csv(BA9_sampleData, file="BA9_sampleData.csv",quote=FALSE)
+write.csv(BA9_metadata, file="BA9_sampleData.csv",quote=FALSE)
 
 hippocampus_metadata <- metadata %>% filter(smtsd=="Brain - Hippocampus")
 hippocampus_counts <- tpm[,colnames(tpm) %in% hippocampus_metadata$accession]
@@ -66,19 +66,19 @@ write.csv(hippocampus_metadata, file="hippocampus_sampleData.csv",quote=FALSE)
 hypothalamus_metadata <- metadata %>% filter(smtsd == "Brain - Hypothalamus")
 hypothalamus_counts <- tpm[,colnames(tpm) %in% hypothalamus_metadata$accession]
 write.csv(hypothalamus_counts, file="hypothalamus_counts.csv",quote=FALSE)
-write.csv(hypothalamus_sampleData, file="hypothalamus_sampleData.csv",quote=FALSE)
+write.csv(hypothalamus_metadata, file="hypothalamus_sampleData.csv",quote=FALSE)
 
 nucleus_accumbens_metadata <- metadata %>% filter(smtsd == "Brain - Nucleus accumbens (basal ganglia)")
 nucleus_accumbens_counts <-  tpm[,colnames(tpm) %in% nucleus_accumbens_metadata$accession]
 write.csv(nucleus_accumbens_counts, file="nucleus_accumbens_counts.csv",quote=FALSE)
-write.csv(nucleus_accumbens_sampleData, file="nucleus_accumbens_sampleData.csv",quote=FALSE)
+write.csv(nucleus_accumbens_metadata, file="nucleus_accumbens_sampleData.csv",quote=FALSE)
 
 putamen_metadata <- metadata %>% filter(smtsd == "Brain - Putamen (basal ganglia)")
 putamen_counts <- tpm[,colnames(tpm) %in% putamen_metadata$accession]
 write.csv(putamen_counts, file="putamen_counts.csv",quote=FALSE)
-write.csv(putamen_sampleData, file="putamen_sampleData.csv",quote=FALSE)
+write.csv(putamen_metadata, file="putamen_sampleData.csv",quote=FALSE)
 
 substantia_nigra_metadata <- metadata %>% filter(smtsd == "Brain - Substantia nigra")
 substantia_nigra_counts <- tpm[,colnames(tpm) %in% substantia_nigra_metadata$accession]
 write.csv(substantia_nigra_counts, file="substantia_nigra_counts.csv",quote=FALSE)
-write.csv(substantia_nigra_sampleData, file="substantia_nigra_sampleData.csv",quote=FALSE)
+write.csv(substantia_nigra_metadata, file="substantia_nigra_sampleData.csv",quote=FALSE)
