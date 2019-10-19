@@ -4,8 +4,6 @@ download.file("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2ensembl.gz", destfile =
 
 gene2ensembl <- read.delim("gene2ensembl.gz", header=TRUE)
 
-head(gene2ensembl %>% filter(X.tax_id == 9606))
-
 human_protein_coding_gene <- gene2ensembl %>%
   filter(X.tax_id == 9606) %>%
   filter(protein_accession.version != "-") %>%
