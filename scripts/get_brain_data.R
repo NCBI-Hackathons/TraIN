@@ -24,58 +24,61 @@ load("/home/team9_hs19/data/raw/gtex.data.Rdata")
 
 exclude_regions <- c("Brain - Cerebellar Hemisphere","Brain - Spinal cord (cervical c-1)","Brain - Cortex")
 
-metadata <- colData(gtex_brain) %>% as.data.frame() %>% rownames_to_column(var='accession') %>%
+metadata <- colData(rse_gene) %>% as.data.frame() %>% rownames_to_column(var='accession') %>%
   filter(!(smtsd %in% exclude_regions)) %>% filter(smrin >= 7.5)
 counts <- assays(rse_gene)$counts
 counts <- counts[,colnames(counts) %in% metadata$accession]
 
+#convert coverage counts to TPM
+tpm <-getTPM(rse_gene,length_var='bp_length',mapped_var=NULL) 
+
 # write out the files independently..
 amygdala_metadata <- metadata %>% filter(smtsd=="Brain - Amygdala")
-amygdala_counts <- counts[,colnames(counts) %in% amygdala_metadata$accession]
+amygdala_counts <- tpm[,colnames(tpm) %in% amygdala_metadata$accession]
 write.csv(amygdala_counts, file="amygdala_counts.csv",quote=FALSE)
 write.csv(amygdala_metadata, file="amygdala_sampleData.csv",quote=FALSE)
 
 BA24_metadata <- metadata %>% filter(smtsd=="Brain - Anterior cingulate cortex (BA24)")
-BA24_counts <- counts[,colnames(counts) %in% BA24_metadata$accession]
+BA24_counts <- tpm[,colnames(tpm) %in% BA24_metadata$accession]
 write.csv(BA24_counts, file="BA24_counts.csv",quote=FALSE)
 write.csv(BA24_metadata, file="BA24_sampleData.csv",quote=FALSE)
 
 caudate_metadata <- metadata %>% filter(smtsd == "Brain - Caudate (basal ganglia)")
-caudate_counts <- counts[,colnames(counts) %in% caudate_metadata$accession]
+caudate_counts <- tpm[,colnames(tpm) %in% caudate_metadata$accession]
 write.csv(caudate_counts, file="caudate_counts.csv",quote=FALSE)
 write.csv(caudate_metadata, file="caudate_sampleData.csv",quote=FALSE)
 
 cerebellum_metadata <- metadata %>% filter(smtsd == "Brain - Cerebellum")
-cerebellum_counts <- counts[,colnames(counts) %in% cerebellum_metadata$accession]
+cerebellum_counts <- tpm[,colnames(tpm) %in% cerebellum_metadata$accession]
 write.csv(cerebellum_counts, file="cerebellum_counts.csv", quote=FALSE)
 write.csv(cerebellum_metadata, file="cerebellum_sampleData.csv",quote=FALSE)
 
 BA9_metadata <- metadata %>% filter(smtsd == "Brain - Frontal Cortex (BA9)")
-BA9_counts <- counts[,colnames(counts) %in% BA9_metadata$accession]
+BA9_counts <- tpm[,colnames(tpm) %in% BA9_metadata$accession]
 write.csv(BA9_counts, file="BA9_counts.csv",quote=FALSE)
 write.csv(BA9_sampleData, file="BA9_sampleData.csv",quote=FALSE)
 
 hippocampus_metadata <- metadata %>% filter(smtsd=="Brain - Hippocampus")
-hippocampus_counts <- counts[,colnames(counts) %in% hippocampus_metadata$accession]
+hippocampus_counts <- tpm[,colnames(tpm) %in% hippocampus_metadata$accession]
 write.csv(hippocampus_counts, file="hippocampus_counts.csv",quote=FALSE)
 write.csv(hippocampus_metadata, file="hippocampus_sampleData.csv",quote=FALSE)
 
 hypothalamus_metadata <- metadata %>% filter(smtsd == "Brain - Hypothalamus")
-hypothalamus_counts <- counts[,colnames(counts) %in% hypothalamus_metadata$accession]
+hypothalamus_counts <- tpm[,colnames(tpm) %in% hypothalamus_metadata$accession]
 write.csv(hypothalamus_counts, file="hypothalamus_counts.csv",quote=FALSE)
 write.csv(hypothalamus_sampleData, file="hypothalamus_sampleData.csv",quote=FALSE)
 
 nucleus_accumbens_metadata <- metadata %>% filter(smtsd == "Brain - Nucleus accumbens (basal ganglia)")
-nucleus_accumbens_counts <-  counts[,colnames(counts) %in% nucleus_accumbens_metadata$accession]
+nucleus_accumbens_counts <-  tpm[,colnames(tpm) %in% nucleus_accumbens_metadata$accession]
 write.csv(nucleus_accumbens_counts, file="nucleus_accumbens_counts.csv",quote=FALSE)
 write.csv(nucleus_accumbens_sampleData, file="nucleus_accumbens_sampleData.csv",quote=FALSE)
 
 putamen_metadata <- metadata %>% filter(smtsd == "Brain - Putamen (basal ganglia)")
-putamen_counts <- counts[,colnames(counts) %in% putamen_metadata$accession]
+putamen_counts <- tpm[,colnames(tpm) %in% putamen_metadata$accession]
 write.csv(putamen_counts, file="putamen_counts.csv",quote=FALSE)
 write.csv(putamen_sampleData, file="putamen_sampleData.csv",quote=FALSE)
 
 substantia_nigra_metadata <- metadata %>% filter(smtsd == "Brain - Substantia nigra")
-substantia_nigra_counts <- counts[,colnames(counts) %in% substantia_nigra_metadata$accession]
+substantia_nigra_counts <- tpm[,colnames(tpm) %in% substantia_nigra_metadata$accession]
 write.csv(substantia_nigra_counts, file="substantia_nigra_counts.csv",quote=FALSE)
 write.csv(substantia_nigra_sampleData, file="substantia_nigra_sampleData.csv",quote=FALSE)
