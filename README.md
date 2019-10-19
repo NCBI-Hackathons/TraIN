@@ -4,8 +4,8 @@ HackSeq19 TEAM: Lucia Guerri (lead), David Guo (co-lead), Avi Srivastava, Owen T
 
 NCBI Hackathon TEAM: Lucia Guerri (lead), Saba Nafees, Amanda Bell, Jingwen Gu, Van Truong & Miranda Darby 
 
-![picture](graphics/poster.jpg)
-![picture](graphics/workflow.png)
+![picture](Graphics/Poster.jpg)
+![picture](Graphics/Workflow.png)
 
 
 The TraIN project aims to accelerate gene function knowledge about cell-to-cell communication molecules in the brain by leveraging the knowledge already generated in immunology on those same molecules. In other words, we are looking at the surface molecules used by the immune system cells to communicate with each other, that are also used by neurons to communicate with other neurons and with glial cells in the brain. Better understanding of molecules of cell-to-cell communication and its relation to brain function will help the production of treatment for psychiatric disorders characterized by connectomic abnormalities, such as autism, schizophrenia and addiction.
