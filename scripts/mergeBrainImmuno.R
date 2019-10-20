@@ -24,7 +24,10 @@ ggplot(mapping, aes(y=log2(braincounts+1), x=log2(immunocounts+1))) + geom_point
 # p <- figure() %>%
 #   ly_points(mapping$braincounts, mapping$mmunocount,
 #             hover = list(mapping$comb))
+rawplot <- figure(height = 750, width = 1500) %>%
+  ly_points(x=immunocounts, y=braincounts, data = mapping , color = mapping$GeneA,
+            hover = list(comb ,braincounts, immunocounts), size = 4, legend = FALSE, alpha = 0.6)
 
-figure(height = 750, width = 1500) %>%
+logplot <- figure(height = 750, width = 1500) %>%
     ly_points(x=logimmuno, y=logbrain, data = mapping , color = mapping$GeneA,
             hover = list(comb ,logbrain, logimmuno), size = 4, legend = FALSE, alpha = 0.6)

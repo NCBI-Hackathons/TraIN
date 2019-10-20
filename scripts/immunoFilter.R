@@ -40,6 +40,8 @@ immunomean <- immunomean[index,]
 
 immunomean$max <- apply(immunomean[,], 1, max)
 
+hist(immunomean$max, breaks=5000, ylim=range(1:10000), xlim=range(1:300), ylab="Number of genes", xlab="Gene expression level (TPM)", main="Maximum gene expression across immune cell types")
+
 write.csv(immunomean, file = "../outputs/immuno_mean_counts.csv", quote = FALSE)
 
 # ## FILTER immuno DATA FOR SURFACE MOLECULES
