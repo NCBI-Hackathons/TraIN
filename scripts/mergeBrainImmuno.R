@@ -18,16 +18,27 @@ library(rbokeh)
 mapping$logbrain <- log2(mapping$braincounts + 1)
 mapping$logimmuno <- log2(mapping$immunocounts + 1)
 
+logimmunocutoff <- log2(immunocutoff+1)
+logbraincutoff <- log2(braincutoff+1)
+
 ggplot(mapping, aes(y=braincounts, x=immunocounts)) + geom_point()
-ggplot(mapping, aes(y=log2(braincounts+1), x=log2(immunocounts+1))) + geom_point()
+ggplot(mapping, aes(y=log2(braincounts+1), x=log2(immunocounts+1))) + geom_point() +
+  geom_vline(xintercept = log2(immunocutoff+1),color="red", linetype="dashed")+
+  geom_hline(yintercept = log2(braincutoff+1),color="red", linetype="dashed")
 
-# p <- figure() %>%
-#   ly_points(mapping$braincounts, mapping$mmunocount,
-#             hover = list(mapping$comb))
-rawplot <- figure(height = 750, width = 1500) %>%
-  ly_points(x=immunocounts, y=braincounts, data = mapping , color = mapping$GeneA,
-            hover = list(comb ,braincounts, immunocounts), size = 4, legend = FALSE, alpha = 0.6)
+#Figure for raw counts
+figure(height = 750, width = 1500, xlab="Log-normlized counts of immune cells", ylab="Log-normlized counts of brain") %>%
+  ly_points(x=immunocounts, y=braincounts, data = mapping,
+            hover = list(comb ,braincounts, immunocounts),
+            legend = FALSE, alpha = 0.6)
 
-logplot <- figure(height = 750, width = 1500) %>%
-    ly_points(x=logimmuno, y=logbrain, data = mapping , color = mapping$GeneA,
-            hover = list(comb ,logbrain, logimmuno), size = 4, legend = FALSE, alpha = 0.6)
+#Figure for Log-normalized counts
+figure(height = 750, width = 1500, xlab="Log-normlized counts of immune cells", ylab="Log-normlized counts of brain") %>%
+    ly_points(x=logimmuno, y=logbrain, data = mapping ,
+            hover = list(comb ,logbrain, logimmuno), 
+            legend = FALSE, alpha = 0.6) %>%
+  ly_abline(v = logimmunocutoff) %>%
+  ly_abline(h =logbraincutoff)
+
+mapping_cutoff <- mapping %>%
+  filter(logimmuno >= logimmunocutoff & logbrain >= logbraincutoff)

@@ -39,9 +39,8 @@ brainmean <- brainmean[index,]
 
 brainmean$max <- apply(brainmean[,], 1, max)
 
-hist(brainmean$max, breaks=500, ylim=range(1:10000), xlim=range(1:300), ylab="Number of genes", xlab="Gene expression level (TPM)", main="Maximum gene expression across brain regions")
-
-braincutoff <- brainmean$max[nrow(brainmean)-12000]
+hist(brainmean$max, breaks=2000, ylim=range(1:5000), xlim=range(1:100), ylab="Number of genes", xlab="Gene expression level (TPM)", main="Maximum gene expression across brain regions")
+braincutoff <- sort(brainmean$max, decreasing = TRUE)[12000]
 
 write.csv(brainmean, file = "../outputs/brain_mean_counts.csv", quote = FALSE)
 
