@@ -42,8 +42,8 @@ brainmean$max <- apply(brainmean[,], 1, max)
 write.csv(brainmean, file = "../outputs/brain_mean_counts.csv", quote = FALSE)
 
 # ## FILTER BRAIN DATA FOR SURFACE MOLECULES
-# brainsurf <- brainmean[rownames(brainmean) %in% geneid$ensembl_gene_id,]
-# 
+# brainsurf <- brainmean[rownames(brainmean) %in% ppilist$ensembl_gene_id,]
+#
 # write.csv(brainsurf, file = "../outputs/brain_surf_counts.csv", quote = FALSE)
 brainsurf <- brainmean
 # LOAD PPI PAIRS
