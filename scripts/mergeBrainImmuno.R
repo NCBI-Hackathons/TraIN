@@ -22,9 +22,12 @@ logimmunocutoff <- log2(immunocutoff+1)
 logbraincutoff <- log2(braincutoff+1)
 
 ggplot(mapping, aes(y=braincounts, x=immunocounts)) + geom_point()
-ggplot(mapping, aes(y=log2(braincounts+1), x=log2(immunocounts+1))) + geom_point() +
-  geom_vline(xintercept = log2(immunocutoff+1),color="red", linetype="dashed")+
-  geom_hline(yintercept = log2(braincutoff+1),color="red", linetype="dashed")
+ggplot(mapping, aes(y=log2(braincounts+1), x=log2(immunocounts+1))) + 
+  geom_point() +
+  geom_vline(xintercept = log2(immunocutoff+1),color="red", linetype="dashed") +
+  geom_hline(yintercept = log2(braincutoff+1),color="red", linetype="dashed") +
+  xlab("Log-normlized counts of immune cells") + 
+  ylab("Log-normlized counts of brain")
 
 #Figure for raw counts
 figure(height = 750, width = 1500, xlab="Log-normlized counts of immune cells", ylab="Log-normlized counts of brain") %>%
