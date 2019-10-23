@@ -1,4 +1,7 @@
-# A TraIN for cell-to-cell communication molecules: Translating from Immunology to Neuroscience
+# For an updated version of TraIN, please go to https://github.com/LuciaGuerri/TraIN
+
+(This is an archive repository)
+## A TraIN for cell-to-cell communication molecules: Translating from Immunology to Neuroscience
 
 HackSeq19 (Oct 2019) TEAM: 
 Lucia Guerri (lead), David Guo (co-lead), Avi Srivastava, Owen Tsai, Nicole Knoetze, Almas Khan
