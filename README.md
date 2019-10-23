@@ -1,6 +1,6 @@
 # For an updated version of TraIN, please go to https://github.com/LuciaGuerri/TraIN
 
-(This is an archive repository)
+(This is now an archive repository)
 ## A TraIN for cell-to-cell communication molecules: Translating from Immunology to Neuroscience
 
 HackSeq19 (Oct 2019) TEAM: 
